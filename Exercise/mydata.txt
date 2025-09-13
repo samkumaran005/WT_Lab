@@ -1,3 +1,0 @@
-Hello, Java Streams!
-This is appended text.
-This is appended text.
