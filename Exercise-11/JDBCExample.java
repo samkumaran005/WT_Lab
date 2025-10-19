@@ -77,7 +77,7 @@ public class JDBCExample {
         if (conn != null) conn.close();
     }
 
-    public void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException {
         JDBCExample jdbc=new JDBCExample();
         jdbc.addUser(4,"vijesh","Mech");
         jdbc.getUser();
@@ -89,3 +89,4 @@ public class JDBCExample {
 }
 
 }
+
