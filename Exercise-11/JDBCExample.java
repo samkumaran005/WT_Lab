@@ -61,12 +61,15 @@ public class JDBCExample {
         ps.executeUpdate();
     }
     
-    public void deleteUser(int id) throws SQLException {
-        Connection conn=getConnection();
+    public void deleteUser(int id){
         String sql = "DELETE FROM User WHERE id = ?";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1,id);
-        ps.executeUpdate();
+        try(Connection conn=getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.print(e);
+        }       
     }
     
     public void close() throws SQLException {
@@ -84,4 +87,5 @@ public class JDBCExample {
         jdbc.deleteUser(4);
         jdbc.close();
 }
+
 }
