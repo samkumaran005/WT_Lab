@@ -1,0 +1,26 @@
+-- create databse details_db;
+-- use details_db;
+-- create table user(
+-- id int not null,
+-- name varchar(20),
+-- dept varchar(10)
+-- );
+-- insert into user values(1,"kumaran","IT");
+-- insert into user values(2,"joe","CT");
+-- Select * from user;
+
+
+
+
+-- create databse details_db;
+-- use details_db;
+-- create table products(
+-- prod_id int not null,
+-- name varchar(20),
+-- price double,
+-- qinstock int
+-- );
+-- insert into products values(1,"computer",25000.00,5);
+-- insert into products values(2,"mouse",1000.00,10);
+-- Select * from products;
+
