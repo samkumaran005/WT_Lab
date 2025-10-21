@@ -1,21 +1,43 @@
+package reflections;
+import java.lang.reflect.*;
+class Sample{
+    public int id;
+    private String name;
+    public Sample(){
+    System.out.println("this is the constructor");
+    }
+}
+
 public class ReflectionClassLiteral {
     public static void main(String[] args) throws Exception {
-        Class<?> clazz = Sample.class;
+        Class clazz = Sample.class;
+        Sample obj = new Sample();
+        
         System.out.println("Public Methods:");
-        for (java.lang.reflect.Method method : clazz.getMethods()) {
+        Method[] methods=clazz.getMethods();
+        for (Method method : methods) {
             System.out.println(method.getName());
         }
+        
         System.out.println("\nPublic Constructors:");
-        for (java.lang.reflect.Constructor<?> constructor : clazz.getConstructors()) {
+        Constructor[] constructors=clazz.getConstructors();
+        for (Constructor constructor : constructors) {
             System.out.println(constructor.getName() + " - Modifier: " + constructor.getModifiers() + " - Parameter Count: " + constructor.getParameterCount());
         }
+        
         System.out.println("\nPublic Fields:");
-        for (java.lang.reflect.Field field : clazz.getFields()) {
-            System.out.println(field.getName() + " - Modifier: " + field.getModifiers());
+        Field[] fields=clazz.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field.getName() + " - Modifier: " + Modifier.toString(field.getModifiers()));
         }
-        java.lang.reflect.Field f = clazz.getField("name");
-        Sample obj = new Sample();
+        Field f = clazz.getDeclaredField("name");
+        f.setAccessible(true);
         f.set(obj, "Reflected Name");
-        System.out.println("Field Value: " + f.get(obj));
+        System.out.println("Name: " + f.get(obj));
+        
+        Field fi = clazz.getDeclaredField("id");
+        fi.setAccessible(true);
+        fi.set(obj, 91);
+        System.out.println("ID: " + fi.get(obj));
     }
 }
